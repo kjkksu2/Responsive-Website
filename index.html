@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Travel</title>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="brand">Travel</a>
+      <div class="menu-bar">
+        <i class="fas fa-bars menu active"></i>
+        <i class="fas fa-times menu"></i>
+      </div>
+      <div class="navigation">
+        <div class="navigation-items">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Content</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+    </header>
+    <main class="home">
+      <video class="active" src="videos/sea.mp4" autoplay muted loop></video>
+      <video src="videos/forest.mp4" autoplay muted loop></video>
+      <video src="videos/river.mp4" autoplay muted loop></video>
+      <div class="content">
+        <h2>
+          Welcome to <br />
+          <span>Paradise</span>
+        </h2>
+        <p>
+          The Faroe Islands, or simply the Faroes or Faeroes are a North
+          Atlantic archipelago located 320 kilometres north-northwest of
+          Scotland, and about halfway between Norway and Iceland. Like
+          Greenland, it is an autonomous territory of the Kingdom of Denmark.
+          The islands have a total area of about 1,400 square kilometres with a
+          population of 53,358 as of June 2021.
+        </p>
+        <a href="#"><span></span>Read More</a>
+      </div>
+      <div class="media-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+      </div>
+      <div class="slider-nav">
+        <div class="nav-btn active"></div>
+        <div class="nav-btn"></div>
+        <div class="nav-btn"></div>
+      </div>
+    </main>
+  </body>
+  <script>
+    // Menu Button
+    const menuBar = document.querySelector(".menu-bar");
+    const menu = document.querySelectorAll(".menu");
+    const navigation = document.querySelector(".navigation");
+
+    let idx = 0;
+    menuBar.addEventListener("click", () => {
+      for (let i = 0; i < menu.length; i++) {
+        if (menu[i].classList.contains("active")) {
+          idx = (i + 1) % menu.length;
+          menu[idx].classList.add("active");
+          menu[i].classList.remove("active");
+
+          if (menu[idx].classList.contains("fa-times")) {
+            navigation.classList.add("active");
+          } else {
+            navigation.classList.remove("active");
+          }
+
+          break;
+        }
+      }
+    });
+
+    // Slider Button && Video Slider
+    const btns = document.querySelectorAll(".nav-btn");
+    const sliders = document.querySelectorAll(".home video");
+
+    const controlBtn = (choice) => {
+      btns.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      sliders.forEach((slider) => {
+        slider.classList.remove("active");
+      });
+
+      btns[choice].classList.add("active");
+      sliders[choice].classList.add("active");
+    };
+
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        controlBtn(i);
+      });
+    });
+  </script>
+</html>
